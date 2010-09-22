@@ -1,0 +1,1140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>832</width>
+    <height>749</height>
+   </rect>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::CustomContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Memcached Manager</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Icons/Globe.png</normaloff>Icons/Globe.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <item>
+     <widget class="QTreeWidget" name="treeCluster">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>150</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>200</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="contextMenuPolicy">
+       <enum>Qt::DefaultContextMenu</enum>
+      </property>
+      <column>
+       <property name="text">
+        <string>Clusters</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTabWidget" name="tabsMain">
+      <property name="minimumSize">
+       <size>
+        <width>325</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string/>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="MTasks">
+       <attribute name="title">
+        <string>Management Tasks</string>
+       </attribute>
+       <attribute name="toolTip">
+        <string>Cluster Management Tasks</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QGroupBox" name="gbClearKey">
+          <property name="title">
+           <string>Manage Cache</string>
+          </property>
+          <property name="flat">
+           <bool>false</bool>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_7">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_7">
+             <item>
+              <widget class="QLabel" name="lblCacheKeys">
+               <property name="text">
+                <string>Cache Key(s)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="txtCacheKeys">
+               <property name="toolTip">
+                <string>Seperate Keys with ';'</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout">
+             <item>
+              <widget class="QPushButton" name="btnGetCacheKeys">
+               <property name="text">
+                <string>Get Key(s)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="btnDelCacheKeys">
+               <property name="text">
+                <string>Delete Key(s)</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnFlushCache">
+             <property name="toolTip">
+              <string>Flush Keys from All Servers in Cluster</string>
+             </property>
+             <property name="text">
+              <string>Flush All Server Cache</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="gbKeySearch">
+          <property name="title">
+           <string>Key Search</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <layout class="QGridLayout" name="gridLayout">
+             <item row="0" column="0">
+              <widget class="QLabel" name="lblKeySearch">
+               <property name="text">
+                <string>Key Expression:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="txtSearchKey"/>
+             </item>
+             <item row="1" column="1">
+              <widget class="QCheckBox" name="cbRegEx">
+               <property name="text">
+                <string>Use RegEx Search</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="lblRegExWarning">
+             <property name="text">
+              <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Note&lt;/span&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;: RegEx searching requires that all keys be returned from all servers in the cluster before the search can be preformed. With larger clusters this can take some time.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="wordWrap">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="btnKeySearch">
+             <property name="text">
+              <string>Search for Key</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QProgressBar" name="pbKeySearch">
+             <property name="value">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="SKInfo">
+       <attribute name="title">
+        <string>Slab &amp;&amp; Key Info</string>
+       </attribute>
+       <attribute name="toolTip">
+        <string>Slabs, Keys, &amp; Values</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Slab and Key Info is currently under development. Planned for the 0.2 release.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="verticalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="Stats">
+       <attribute name="title">
+        <string>Statistics</string>
+       </attribute>
+       <attribute name="toolTip">
+        <string>Memcached Server Stats</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QTabWidget" name="tabsStats">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="CacheInfo">
+           <attribute name="title">
+            <string>Cache Info</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QScrollArea" name="scrollArea_2">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="frameShadow">
+               <enum>QFrame::Sunken</enum>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents_2">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>562</width>
+                 <height>540</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_3">
+                <item>
+                 <widget class="QGroupBox" name="gbTotals">
+                  <property name="title">
+                   <string>Totals</string>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_3">
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="lblCurrentItemsTxt">
+                     <property name="text">
+                      <string>Current Items:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLabel" name="lblCurrentItems">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="0">
+                    <widget class="QLabel" name="lblHitsTxt">
+                     <property name="text">
+                      <string>Hits:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="1">
+                    <widget class="QLabel" name="lblHits">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="0">
+                    <widget class="QLabel" name="lblMissesTxt">
+                     <property name="text">
+                      <string>Misses:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="1">
+                    <widget class="QLabel" name="lblMisses">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="10" column="0">
+                    <widget class="QLabel" name="lblFreeTxt">
+                     <property name="text">
+                      <string>Free Space:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="10" column="1">
+                    <widget class="QLabel" name="lblFree">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="11" column="0">
+                    <widget class="QLabel" name="lblUsedTxt">
+                     <property name="text">
+                      <string>Used Space:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="11" column="1">
+                    <widget class="QLabel" name="lblUsed">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="lblItemsTxt">
+                     <property name="text">
+                      <string>All Time Items:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabel" name="lblItems">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="lblConnectionsTxt">
+                     <property name="text">
+                      <string>All Time Connections:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLabel" name="lblConnections">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="lblCurrentConnectionsTxt">
+                     <property name="text">
+                      <string>Current Connections:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QLabel" name="lblCurrentConnections">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="0">
+                    <widget class="QLabel" name="lblGetsTxt">
+                     <property name="text">
+                      <string>Gets:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="1">
+                    <widget class="QLabel" name="lblGets">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="0">
+                    <widget class="QLabel" name="lblSetsTxt">
+                     <property name="text">
+                      <string>Sets:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="1">
+                    <widget class="QLabel" name="lblSets">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="9" column="0">
+                    <widget class="QLabel" name="lblSpaceTxt">
+                     <property name="text">
+                      <string>Space:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="9" column="1">
+                    <widget class="QLabel" name="lblSpace">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabel" name="lblThreadsTxt">
+                     <property name="text">
+                      <string>Total Threads:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QLabel" name="lblThreads">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="12" column="0">
+                    <widget class="QLabel" name="lblEvicTxt">
+                     <property name="text">
+                      <string>Evictions:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="12" column="1">
+                    <widget class="QLabel" name="lblEvic">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="gbRates">
+                  <property name="title">
+                   <string>Cluster Rates</string>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_4">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="lblRequestRateTxt">
+                     <property name="text">
+                      <string>Cluster Request Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabel" name="lblRequestRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabel" name="lblHitRateTxt">
+                     <property name="text">
+                      <string>Cluster Hit Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QLabel" name="lblHitRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="0">
+                    <widget class="QLabel" name="lblMissRateTxt">
+                     <property name="text">
+                      <string>Cluster Miss Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="1">
+                    <widget class="QLabel" name="lblMissRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="10" column="0">
+                    <widget class="QLabel" name="lblSetRateTxt">
+                     <property name="text">
+                      <string>Cluster Set Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="0">
+                    <widget class="QLabel" name="lblGetRateTxt">
+                     <property name="text">
+                      <string>Cluster Get Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="10" column="1">
+                    <widget class="QLabel" name="lblSetRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="1">
+                    <widget class="QLabel" name="lblGetRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="11" column="0">
+                    <widget class="QLabel" name="lblEvicRateTxt">
+                     <property name="text">
+                      <string>Cluster Eviction Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="11" column="1">
+                    <widget class="QLabel" name="lblEvicRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QGroupBox" name="gbAvgRates">
+                  <property name="title">
+                   <string>Avg Server Rates</string>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_2">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="lblRequestRateAvgTxt">
+                     <property name="text">
+                      <string>Avg. Server Request Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabel" name="lblRequestRateAvg">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="lblHitRateAvgTxt">
+                     <property name="text">
+                      <string>Avg. Server Hit Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLabel" name="lblHitRateAvg">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="lblMissRateAvgTxt">
+                     <property name="text">
+                      <string>Avg. Server Miss Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLabel" name="lblMissRateAvg">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="lblGetRateAvgTxt">
+                     <property name="text">
+                      <string>Avg. Server Get Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QLabel" name="lblGetRateAvg">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabel" name="lblSetRateAvgTxt">
+                     <property name="text">
+                      <string>Avg. Server Set Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QLabel" name="lblSetRateAvg">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_3">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="Diagrams">
+           <attribute name="title">
+            <string>Diagrams</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QScrollArea" name="scrollArea">
+              <property name="frameShape">
+               <enum>QFrame::StyledPanel</enum>
+              </property>
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>562</width>
+                 <height>540</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout">
+                <item>
+                 <widget class="QLabel" name="lblCacheUsageGraph">
+                  <property name="text">
+                   <string>Cache Usage</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lblHitsMissesGraph">
+                  <property name="text">
+                   <string>Hits &amp; Misses Graph</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QLabel" name="lblGetSetGraph">
+                  <property name="text">
+                   <string>Gets &amp; Set Graph</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="ServerInfo">
+           <attribute name="title">
+            <string>Server Information</string>
+           </attribute>
+           <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <widget class="QScrollArea" name="saServerInfo">
+              <property name="widgetResizable">
+               <bool>true</bool>
+              </property>
+              <widget class="QWidget" name="scrollAreaWidgetContents_3">
+               <property name="geometry">
+                <rect>
+                 <x>0</x>
+                 <y>0</y>
+                 <width>562</width>
+                 <height>540</height>
+                </rect>
+               </property>
+               <layout class="QVBoxLayout" name="verticalLayout_6">
+                <item>
+                 <widget class="QGroupBox" name="gbServerX">
+                  <property name="title">
+                   <string>Server X</string>
+                  </property>
+                  <layout class="QGridLayout" name="gridLayout_5">
+                   <item row="0" column="0">
+                    <widget class="QLabel" name="lblServerXTotalItemsTxt">
+                     <property name="text">
+                      <string>Total Items:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="0" column="1">
+                    <widget class="QLabel" name="lblServerXTotalItems">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="0">
+                    <widget class="QLabel" name="lblServerXItemsTxt">
+                     <property name="text">
+                      <string>Current Items:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="1" column="1">
+                    <widget class="QLabel" name="lblServerXItems">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="0">
+                    <widget class="QLabel" name="lblServerXTotalConnectionsTxt">
+                     <property name="text">
+                      <string>Total Connections:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="2" column="1">
+                    <widget class="QLabel" name="lblServerXTotalConnections">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="0">
+                    <widget class="QLabel" name="lblServerXConnectionsTxt">
+                     <property name="text">
+                      <string>Connections:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="3" column="1">
+                    <widget class="QLabel" name="lblServerXConnections">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="0">
+                    <widget class="QLabel" name="lblServerXHitsTxt">
+                     <property name="text">
+                      <string>Hits:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="4" column="1">
+                    <widget class="QLabel" name="lblServerXHits">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="0">
+                    <widget class="QLabel" name="lblServerXMissesTxt">
+                     <property name="text">
+                      <string>Misses:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="5" column="1">
+                    <widget class="QLabel" name="lblServerXMisses">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="0">
+                    <widget class="QLabel" name="lblServerXGetsTxt">
+                     <property name="text">
+                      <string>Gets:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="6" column="1">
+                    <widget class="QLabel" name="lblServerXGets">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="0">
+                    <widget class="QLabel" name="lblServerXSetsTxt">
+                     <property name="text">
+                      <string>Sets:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="7" column="1">
+                    <widget class="QLabel" name="lblServerXSets">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="0">
+                    <widget class="QLabel" name="lblServerXTotalSpaceTxt">
+                     <property name="text">
+                      <string>Total Space:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="8" column="1">
+                    <widget class="QLabel" name="lblServerXTotalSpace">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="9" column="0">
+                    <widget class="QLabel" name="lblServerXFreeSpaceTxt">
+                     <property name="text">
+                      <string>Free Space:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="9" column="1">
+                    <widget class="QLabel" name="lblServerXFreeSpace">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="10" column="0">
+                    <widget class="QLabel" name="lblServerXUsedSpaceTxt">
+                     <property name="text">
+                      <string>Used Space:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="11" column="0">
+                    <widget class="QLabel" name="lblServerXRequestRateTxt">
+                     <property name="text">
+                      <string>Request Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="10" column="1">
+                    <widget class="QLabel" name="lblServerXUsedSpace">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="11" column="1">
+                    <widget class="QLabel" name="lblServerXRequestRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="12" column="0">
+                    <widget class="QLabel" name="lblServerXHitRateTxt">
+                     <property name="text">
+                      <string>Hit Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="13" column="0">
+                    <widget class="QLabel" name="lblServerXMissRateTxt">
+                     <property name="text">
+                      <string>Miss Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="15" column="0">
+                    <widget class="QLabel" name="lblServerXSetRateTxt">
+                     <property name="text">
+                      <string>Set Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="14" column="0">
+                    <widget class="QLabel" name="lblServerXGetRateTxt">
+                     <property name="text">
+                      <string>Get Rate:</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="12" column="1">
+                    <widget class="QLabel" name="lblServerXHitRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="13" column="1">
+                    <widget class="QLabel" name="lblServerXMissRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="14" column="1">
+                    <widget class="QLabel" name="lblServerXGetRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                   <item row="15" column="1">
+                    <widget class="QLabel" name="lblServerXSetRate">
+                     <property name="text">
+                      <string>n/a</string>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="verticalSpacer_4">
+                  <property name="orientation">
+                   <enum>Qt::Vertical</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>40</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QPushButton" name="btnRefresh">
+            <property name="text">
+             <string>Refresh Stats</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnWatch">
+            <property name="text">
+             <string>Watch Live Stats</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QProgressBar" name="pbStats">
+          <property name="value">
+           <number>0</number>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>832</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionPreferences"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Servers">
+    <property name="title">
+     <string>&amp;Servers</string>
+    </property>
+    <addaction name="actionAddClusterServer"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menu_About">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menu_Servers"/>
+   <addaction name="menu_About"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAddClusterServer">
+   <property name="icon">
+    <iconset>
+     <normaloff>Icons/Add.png</normaloff>Icons/Add.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Add Cluster and/or Server</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Sa&amp;ve</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>&amp;Quit</string>
+   </property>
+  </action>
+  <action name="actionAddCluster">
+   <property name="icon">
+    <iconset>
+     <normaloff>Icons/Add.png</normaloff>Icons/Add.png</iconset>
+   </property>
+   <property name="text">
+    <string>Add &amp;Cluster</string>
+   </property>
+  </action>
+  <action name="actionTest_Sub_Item">
+   <property name="text">
+    <string>Test Sub Item</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>&amp;Preferences</string>
+   </property>
+   <property name="iconText">
+    <string>&amp;Preferences</string>
+   </property>
+   <property name="toolTip">
+    <string>&amp;Preferences</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>&amp;About</string>
+   </property>
+  </action>
+ </widget>
+ <tabstops>
+  <tabstop>treeCluster</tabstop>
+  <tabstop>tabsMain</tabstop>
+  <tabstop>txtCacheKeys</tabstop>
+  <tabstop>btnFlushCache</tabstop>
+  <tabstop>txtSearchKey</tabstop>
+  <tabstop>cbRegEx</tabstop>
+  <tabstop>btnKeySearch</tabstop>
+  <tabstop>tabsStats</tabstop>
+  <tabstop>scrollArea_2</tabstop>
+  <tabstop>scrollArea</tabstop>
+  <tabstop>saServerInfo</tabstop>
+  <tabstop>btnRefresh</tabstop>
+  <tabstop>btnWatch</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionQuit</sender>
+   <signal>activated()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>295</x>
+     <y>212</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

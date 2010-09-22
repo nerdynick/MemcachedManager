@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddDialog</class>
+ <widget class="QDialog" name="AddDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>308</width>
+    <height>363</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Add Clusters &amp; Servers</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>Icons/Add.png</normaloff>Icons/Add.png</iconset>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="gbCluster">
+     <property name="title">
+      <string>Add Cluster</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="lblClusterName">
+        <property name="text">
+         <string>Cluster Name:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="txtClusterName"/>
+      </item>
+      <item row="1" column="1">
+       <widget class="QPushButton" name="btnAddCluster">
+        <property name="text">
+         <string>Add Cluster</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="gbAddServer">
+     <property name="title">
+      <string>Add Server</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="1" column="1">
+       <widget class="QComboBox" name="cbClusters"/>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="txtServerAddress"/>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="lblServerPort">
+        <property name="text">
+         <string>Server Port:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" rowspan="2">
+       <widget class="QLineEdit" name="txtServerPort"/>
+      </item>
+      <item row="7" column="1">
+       <widget class="QPushButton" name="btnAddServer">
+        <property name="text">
+         <string>Add Server</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="lblServerAddress">
+        <property name="text">
+         <string>Server Address:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="lblCluster">
+        <property name="text">
+         <string>Cluster:</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLineEdit" name="txtServerName"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="lblServerName">
+        <property name="text">
+         <string>Server Name:</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="btnClose">
+     <property name="text">
+      <string>Close</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>txtClusterName</tabstop>
+  <tabstop>btnAddCluster</tabstop>
+  <tabstop>cbClusters</tabstop>
+  <tabstop>txtServerName</tabstop>
+  <tabstop>txtServerAddress</tabstop>
+  <tabstop>txtServerPort</tabstop>
+  <tabstop>btnAddServer</tabstop>
+  <tabstop>btnClose</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btnClose</sender>
+   <signal>clicked()</signal>
+   <receiver>AddDialog</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>153</x>
+     <y>339</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>153</x>
+     <y>181</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

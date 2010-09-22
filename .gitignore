@@ -1,0 +1,7 @@
+*\.svn*
+src/build*
+src/dist/*
+.settings
+src/MANIFEST
+src/MemcachedManager.egg-info/*
+*\.pyc

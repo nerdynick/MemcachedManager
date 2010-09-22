@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CacheItem</class>
+ <widget class="QDialog" name="CacheItem">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>311</width>
+    <height>437</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Cached Item</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QComboBox" name="cbEncodings">
+     <item>
+      <property name="text">
+       <string>Raw</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>PHP Serialized</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Python Pickeled</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>JSON</string>
+      </property>
+     </item>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="txtCachedValue">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

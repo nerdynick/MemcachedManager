@@ -1,0 +1,14 @@
+Package: memcached-manager
+Version: 0.1a2
+Section: programming 
+Priority: optional
+Architecture: all
+Essential: no
+Homepage: http://code.google.com/p/memcached-manager/
+Depends: python-qt4 (>= 4.4.3), python-matplotlib, python2.5
+Maintainer: Nick Verbeck <nerdynick@gmail.com>
+Description: A simple Python/QT Memcached Server Management Console. 
+.
+A simple Python/QT Memcached Server Management Console. 
+
+Memcached Manager allows you to do Key Searches, Flush Servers, Delete Keys, and view stats about your cluster.
