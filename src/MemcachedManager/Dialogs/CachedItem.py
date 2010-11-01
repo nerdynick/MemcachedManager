@@ -35,15 +35,20 @@ class CachedItem(QtGui.QDialog, Ui_CacheItem):
             else:
                 unpickel=False
                 
-            value = self.currentCluster.getKey(self.currentKeys, unpickel=unpickel)
-            if encoding == 'PHP Serialized':
-                #TODO: PHP Deserialize
-                value = ["=== "+ str(k) +" ===\n\n"+ str(PHPUnserialize().unserialize(v)) for k,v in dict(value).iteritems()]
-            elif encoding == 'JSON':
-                value = ["=== "+ str(k) +" ===\n\n"+ str(json.dumps(json.loads(v), sort_keys=True, indent=4)) for k,v in dict(value).iteritems()]
-            else:
-                value = ["=== "+ str(k) +" ===\n\n"+ v for k,v in dict(value).iteritems()]
+            values = self.currentCluster.getKeys(self.currentKeys, unpickel=unpickel)
+            text = ""
+            for server, value in dict(values).items():
+                if encoding == 'PHP Serialized':
+                    #TODO: PHP Deserialize
+                    value = ["--- "+ str(k) +" ---\n\n"+ str(PHPUnserialize().unserialize(v)) for k,v in dict(value).iteritems()]
+                elif encoding == 'JSON':
+                    value = ["--- "+ str(k) +" ---\n\n"+ str(json.dumps(json.loads(v), sort_keys=True, indent=4)) for k,v in dict(value).iteritems()]
+                else:
+                    value = ["--- "+ str(k) +" ---\n\n"+ v for k,v in dict(value).iteritems()]
+                    
+                value = "\n\n".join(value)    
+                text += "\n\n==="+ str(server) +"==="
                 
-            value = "\n\n".join(value)
-            self.txtCachedValue.setPlainText(value)
+            
+            self.txtCachedValue.setPlainText(text)
         

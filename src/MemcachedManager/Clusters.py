@@ -3,7 +3,7 @@ try:
 except Exception, e:
 	from md5 import md5
 	
-import memcached.memcache
+import memcached.Client
 import memcached.Stats
 from PyQt4.QtGui import QTreeWidgetItem
 from PyQt4.QtCore import QStringList
@@ -56,7 +56,7 @@ class Cluster:
 			self.treeItemParent.removeItemWidget(self.treeItem, 0)
 				
 	def getMemcached(self):
-		return memcached.memcache.Client(self.getServerMemcachedUrls(), debug=0)
+		return memcached.Client.MemcachedClient(self.getServerMemcachedUrls(), debug=0)
 			
 	#Memcached Management Functions
 			
@@ -66,10 +66,10 @@ class Cluster:
 		mc.delete_multi(keys)
 		mc.disconnect_all()
 			
-	def getKey(self, key, unpickel=True):
-		keys = key.split()
+	def getKeys(self, key, unpickel=True):
+		keys = str(key).split(',')
 		mc = self.getMemcached()
-		values = mc.get_multi(keys, unpickel=unpickel)
+		values = mc.get_all(keys, unpickel=unpickel)
 		mc.disconnect_all()
 		return values
 		
