@@ -7,7 +7,12 @@ import memcache
 import socket
 
 class MemcachedClient(memcache.Client):
-    def get_all(self, keys, key_prefix='', unpickel=True):
+    def get_all(self, keys, key_prefix='', unpickel=True, compressed=True):
+        if compressed:
+            flag = memcache.Client._FLAG_COMPRESSED
+        else:
+            flag = 0
+            
         values = {}
         for key in keys:
             server, key = self._get_server(key)
@@ -18,11 +23,11 @@ class MemcachedClient(memcache.Client):
                 try:
                     server.send_cmd("%s %s" % ('get', key))
                     rkey = flags = rlen = None
-                    rkey, flags, rlen, = self._expectvalue(server)
+                    rkey, flags, rlen = self._expectvalue(server)
                     if not rkey:
                         value = None
                     else:
-                        value = self._recv_value(server, flags, rlen, unpickel=unpickel)
+                        value = self._recv_value(server, flag, rlen, unpickel=unpickel)
                         server.expect("END")
                 except (memcache._Error, socket.error), msg:
                     if isinstance(msg, tuple):

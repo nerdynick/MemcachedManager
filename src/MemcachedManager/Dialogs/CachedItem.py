@@ -39,16 +39,29 @@ class CachedItem(QtGui.QDialog, Ui_CacheItem):
             text = ""
             for server, value in dict(values).items():
                 if encoding == 'PHP Serialized':
-                    #TODO: PHP Deserialize
-                    value = ["--- "+ str(k) +" ---\n\n"+ str(PHPUnserialize().unserialize(v)) for k,v in dict(value).iteritems()]
+                    tvalue = []
+                    for k,v in dict(value).iteritems():
+                        try:
+                            v = str(PHPUnserialize().unserialize(v))
+                        except Exception:
+                            v = 'Error'
+                        tvalue.append("--- "+ str(k) +" ---\n\n"+v)
+                    value = tvalue
                 elif encoding == 'JSON':
-                    value = ["--- "+ str(k) +" ---\n\n"+ str(json.dumps(json.loads(v), sort_keys=True, indent=4)) for k,v in dict(value).iteritems()]
+                    tvalue = []
+                    for k,v in dict(value).iteritems():
+                        try:
+                            v = str(json.dumps(json.loads(v), sort_keys=True, indent=4))
+                        except Exception:
+                            v = 'Error'
+                        tvalue.append("--- "+ str(k) +" ---\n\n"+v)
+                    value = tvalue
                 else:
                     value = ["--- "+ str(k) +" ---\n\n"+ v for k,v in dict(value).iteritems()]
                     
-                value = "\n\n".join(value)    
-                text += "\n\n==="+ str(server) +"==="
+                value = "\n\n".join(value)
+                text += "\n\n==="+ str(server) +"===\n"+value
+                text = QtCore.QString(text)
                 
-            
             self.txtCachedValue.setPlainText(text)
         
