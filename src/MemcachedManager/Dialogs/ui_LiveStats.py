@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'LiveStats.ui'
 #
-# Created: Sun Dec  5 12:22:09 2010
+# Created: Sun Dec  5 13:55:17 2010
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

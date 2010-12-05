@@ -45,6 +45,7 @@ class GlobalSettings:
 				if os.path.exists(oldPath) is True:
 					self.config = pickle.load(open(oldPath, 'rb'))
 					os.remove(oldPath)
+					self.initStats()
 					self.save()
 			
 		if not self.__dict__.has_key('config') or self.config is None:
@@ -71,6 +72,31 @@ class GlobalSettings:
 							}
 			else:
 				self.config = yaml.load(open(self.configPath, 'rb'))
+				
+			self.initStats()
+	
+	def initStats(self):
+		if not self.config['Stats'].has_key('ServerStats'):
+			self.config['Stats']['ServerStats'] = {
+				'PID':True, 'DateStarted':True, 'Uptime':True,
+				'PointerSize':True, 'Threads':True,
+				'CPUUserTime':True, 'CPUSystemTime':True,
+				'ConnectionStruct':True, 'AcceptingConnections':True, 'ConnectionYield':True,
+				'ListenDisabled':True,
+				'TotalItems':True, 'CurrentItems':True,
+				'TotalConnections':True, 'CurrentConnections':True,
+				'Flushes':True, 'Evictions':True,
+				'NetIn':True, 'NetOut':True,
+				'TotalSpace':True, 'FreeSpace':True, 'UsedSpace':True,
+				'TotalRequests':True, 'TotalGets':True, 'TotalSets':True,
+				'GetHits':True, 'GetMisses':True,
+				'DeleteHits':True, 'DeleteMisses':True,
+				'IncrHits':True, 'IncrMisses':True,
+				'DecrHits':True, 'DecrMisses':True,
+				'CASHits':True, 'CASMisses':True, 'CASBadval':True,
+				'RequestRate':True, 'HitRate':True, 'MissRate':True,
+				'GetRate':True, 'SetRate':True, 'EvictionRate':True
+			}
 		
 	def save(self):			
 		yaml.dump(self.config, open(self.configPath, 'wb'))

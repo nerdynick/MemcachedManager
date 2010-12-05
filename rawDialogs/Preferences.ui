@@ -1,62 +1,544 @@
-<ui version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>PrefWindow</class>
- <widget class="QDialog" name="PrefWindow" >
-  <property name="geometry" >
+ <widget class="QDialog" name="PrefWindow">
+  <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>422</width>
-    <height>300</height>
+    <width>577</width>
+    <height>510</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="windowTitle">
    <string>Preferences</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout" >
+  <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QTabWidget" name="tbMain" >
-     <property name="currentIndex" >
-      <number>1</number>
+    <widget class="QTabWidget" name="tbMain">
+     <property name="currentIndex">
+      <number>0</number>
      </property>
-     <widget class="QWidget" name="GraphTab" >
-      <attribute name="title" >
+     <widget class="QWidget" name="StatsTB">
+      <attribute name="title">
+       <string>Stats</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QGroupBox" name="gbLiveStats">
+         <property name="title">
+          <string>Live Stats</string>
+         </property>
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="0" column="0">
+           <widget class="QLabel" name="lblRefreshLiveInterval">
+            <property name="text">
+             <string>Refresh Rate</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QLineEdit" name="txtRefreshLiveStats"/>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="gbServerStats">
+         <property name="title">
+          <string>Server Stats to Show</string>
+         </property>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QScrollArea" name="scrollArea">
+            <property name="widgetResizable">
+             <bool>true</bool>
+            </property>
+            <widget class="QWidget" name="scrollAreaWidgetContents">
+             <property name="geometry">
+              <rect>
+               <x>0</x>
+               <y>-222</y>
+               <width>493</width>
+               <height>498</height>
+              </rect>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_2">
+              <item row="0" column="0">
+               <widget class="QCheckBox" name="cbPID">
+                <property name="text">
+                 <string>PID</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QCheckBox" name="cbStarted">
+                <property name="text">
+                 <string>Date Started</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="2">
+               <widget class="QCheckBox" name="cbUptime">
+                <property name="text">
+                 <string>Uptime</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QCheckBox" name="cbPointerSize">
+                <property name="text">
+                 <string>Pointer Size</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QCheckBox" name="cbThreads">
+                <property name="text">
+                 <string>Threads</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QCheckBox" name="cbTotalItems">
+                <property name="text">
+                 <string>Total Items</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QCheckBox" name="cbTotalConnections">
+                <property name="text">
+                 <string>Total Connections</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="0">
+               <widget class="QCheckBox" name="cbFlushes">
+                <property name="text">
+                 <string>Flushes</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="0">
+               <widget class="QCheckBox" name="cbNetIn">
+                <property name="text">
+                 <string>Net In</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="1">
+               <widget class="QCheckBox" name="cbCurrentItems">
+                <property name="text">
+                 <string>Current Items</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="7" column="1">
+               <widget class="QCheckBox" name="cbEvictions">
+                <property name="text">
+                 <string>Evictions</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="8" column="1">
+               <widget class="QCheckBox" name="cbNetOut">
+                <property name="text">
+                 <string>Net Out</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="0">
+               <widget class="QCheckBox" name="cbTotalSpace">
+                <property name="text">
+                 <string>Total Space</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="1">
+               <widget class="QCheckBox" name="cbFreeSpace">
+                <property name="text">
+                 <string>Free Space</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="9" column="2">
+               <widget class="QCheckBox" name="cbUsedSpace">
+                <property name="text">
+                 <string>Used Space</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="0">
+               <widget class="QCheckBox" name="cbRequests">
+                <property name="text">
+                 <string>Total Requests</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="0">
+               <widget class="QCheckBox" name="cbGetHits">
+                <property name="text">
+                 <string>Get Hits</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="0">
+               <widget class="QCheckBox" name="cbDeleteHits">
+                <property name="text">
+                 <string>Delete Hits</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="0">
+               <widget class="QCheckBox" name="cbIncrHits">
+                <property name="text">
+                 <string>Incr Hits</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="1">
+               <widget class="QCheckBox" name="cbGets">
+                <property name="text">
+                 <string>Total Gets</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="10" column="2">
+               <widget class="QCheckBox" name="cbSets">
+                <property name="text">
+                 <string>Total Sets</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="11" column="1">
+               <widget class="QCheckBox" name="cbGetMisses">
+                <property name="text">
+                 <string>Get Misses</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="12" column="1">
+               <widget class="QCheckBox" name="cbDeleteMisses">
+                <property name="text">
+                 <string>Delete Misses</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="13" column="1">
+               <widget class="QCheckBox" name="cbIncrMisses">
+                <property name="text">
+                 <string>Incr Misses</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="14" column="0">
+               <widget class="QCheckBox" name="cbDecrHits">
+                <property name="text">
+                 <string>Decr Hits</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="0">
+               <widget class="QCheckBox" name="cbCASHits">
+                <property name="text">
+                 <string>CAS Hits</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="14" column="1">
+               <widget class="QCheckBox" name="cbDecrMisses">
+                <property name="text">
+                 <string>Decr Misses</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="1">
+               <widget class="QCheckBox" name="cbCASMisses">
+                <property name="text">
+                 <string>CAS Misses</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QCheckBox" name="cbCPUUser">
+                <property name="text">
+                 <string>CPU User Time</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QCheckBox" name="cbCPUSystem">
+                <property name="text">
+                 <string>CPU System Time</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QCheckBox" name="cbAcceptingConnections">
+                <property name="text">
+                 <string>Accepting Connections</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QCheckBox" name="cbConnectionStructs">
+                <property name="text">
+                 <string>Connection Structures</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QCheckBox" name="cbListenDisabled">
+                <property name="text">
+                 <string>Listen Disabled Num</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="16" column="0">
+               <widget class="QCheckBox" name="cbRequestRate">
+                <property name="text">
+                 <string>Request Rate</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="0">
+               <widget class="QCheckBox" name="cbGetRate">
+                <property name="text">
+                 <string>Get Rate</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="16" column="1">
+               <widget class="QCheckBox" name="cbHitRate">
+                <property name="text">
+                 <string>Hit Rate</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="16" column="2">
+               <widget class="QCheckBox" name="cbMissRate">
+                <property name="text">
+                 <string>Miss Rate</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="1">
+               <widget class="QCheckBox" name="cbSetRate">
+                <property name="text">
+                 <string>Set Rate</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="17" column="2">
+               <widget class="QCheckBox" name="cbEvictionRate">
+                <property name="text">
+                 <string>Eviction Rate</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QCheckBox" name="cbConnections">
+                <property name="text">
+                 <string>Current Connections</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="2">
+               <widget class="QCheckBox" name="cbConnectionYield">
+                <property name="text">
+                 <string>Connection Yields</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+              <item row="15" column="2">
+               <widget class="QCheckBox" name="cbCASBadval">
+                <property name="text">
+                 <string>CAS Badval</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="cbAutoRefresh">
+         <property name="text">
+          <string>Auto Refresh Stats on Tab Change</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="GraphTab">
+      <attribute name="title">
        <string>Graphs</string>
       </attribute>
-      <layout class="QHBoxLayout" name="horizontalLayout" >
+      <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_2" >
+        <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
-          <widget class="QLabel" name="lblPieGraphColors" >
-           <property name="text" >
+          <widget class="QLabel" name="lblPieGraphColors">
+           <property name="text">
             <string>Pie Graph Colors:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QTextEdit" name="txtPieColors" >
-           <property name="html" >
-            <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
-&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+          <widget class="QTextEdit" name="txtPieColors">
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
-&lt;p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;/p>&lt;/body>&lt;/html></string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif';&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_3" >
+        <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QLabel" name="lblHitMissesColor" >
-           <property name="text" >
+          <widget class="QLabel" name="lblHitMissesColor">
+           <property name="text">
             <string>Hit &amp; Misses Color:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="txtHitMissesColor" >
-           <property name="minimumSize" >
+          <widget class="QLineEdit" name="txtHitMissesColor">
+           <property name="minimumSize">
             <size>
              <width>100</width>
              <height>0</height>
@@ -65,15 +547,15 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <widget class="QLabel" name="lblGetsSetsColor" >
-           <property name="text" >
+          <widget class="QLabel" name="lblGetsSetsColor">
+           <property name="text">
             <string>Gets &amp; Sets Color:</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="txtGetsSetsColor" >
-           <property name="minimumSize" >
+          <widget class="QLineEdit" name="txtGetsSetsColor">
+           <property name="minimumSize">
             <size>
              <width>100</width>
              <height>0</height>
@@ -82,11 +564,11 @@ p, li { white-space: pre-wrap; }
           </widget>
          </item>
          <item>
-          <spacer name="verticalSpacer" >
-           <property name="orientation" >
+          <spacer name="verticalSpacer">
+           <property name="orientation">
             <enum>Qt::Vertical</enum>
            </property>
-           <property name="sizeHint" stdset="0" >
+           <property name="sizeHint" stdset="0">
             <size>
              <width>20</width>
              <height>40</height>
@@ -98,64 +580,23 @@ p, li { white-space: pre-wrap; }
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="StatsTB" >
-      <attribute name="title" >
-       <string>Stats</string>
-      </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_4" >
-       <item>
-        <layout class="QGridLayout" name="gridLayout" >
-         <item row="0" column="0" >
-          <widget class="QLabel" name="lblRefreshLiveInterval" >
-           <property name="text" >
-            <string>Refresh Live Stats Interval:</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="1" >
-          <widget class="QLineEdit" name="txtRefreshLiveStats" />
-         </item>
-         <item row="1" column="1" >
-          <widget class="QCheckBox" name="cbAutoRefresh" >
-           <property name="text" >
-            <string>Auto Refresh on Tab Focus</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <spacer name="verticalSpacer_2" >
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-      </layout>
-     </widget>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2" >
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QPushButton" name="btnCancel" >
-       <property name="text" >
+      <widget class="QPushButton" name="btnCancel">
+       <property name="text">
         <string>Cancel</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="btnSave" >
-       <property name="text" >
+      <widget class="QPushButton" name="btnSave">
+       <property name="text">
         <string>Save Settings</string>
        </property>
-       <property name="default" >
+       <property name="default">
         <bool>true</bool>
        </property>
       </widget>
@@ -172,11 +613,11 @@ p, li { white-space: pre-wrap; }
    <receiver>PrefWindow</receiver>
    <slot>close()</slot>
    <hints>
-    <hint type="sourcelabel" >
+    <hint type="sourcelabel">
      <x>108</x>
      <y>275</y>
     </hint>
-    <hint type="destinationlabel" >
+    <hint type="destinationlabel">
      <x>210</x>
      <y>149</y>
     </hint>

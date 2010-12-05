@@ -209,6 +209,7 @@ class Stats:
 			lblServerXStarted.setText(str(itemValue))
 			grid.addWidget(lblServerXStarted, itemCounter, 1, 1, 1)
 		
+		tSettings = self.settings.settings.config['Stats']['ServerStats']
 		#Add each server
 		for s in stats.servers:
 			hostStr = str(s.Name).replace(':', '').replace('.', '').replace('-', '')
@@ -223,199 +224,241 @@ class Stats:
 			gridLayout_5.setObjectName("gridLayout_5")
 			
 			#PID
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'PID', s.PID)
-			itemCounter += 1
+			if tSettings['PID']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'PID', s.PID)
+				itemCounter += 1
 			
 			#Start Time
-			starttime = (datetime.datetime.fromtimestamp(0) + (s.Time - s.Uptime)).ctime()
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Started', starttime)
-			itemCounter += 1
+			if tSettings['DateStarted']:
+				starttime = (datetime.datetime.fromtimestamp(0) + (s.Time - s.Uptime)).ctime()
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Started', starttime)
+				itemCounter += 1
 			
 			#Uptime
-			uptime = s.UptimeTimestamp
-			sec =  uptime % 60
-			uptime = int(uptime/60)
-			min = uptime % 60
-			uptime = int(uptime/60)
-			hrs = uptime % 60
-			uptime = int(uptime/60)
-			days = uptime
-			uptimeStr = ""
-			if days > 1:
-				uptimeStr += str(days) +" days "
-			elif days == 1:
-				uptimeStr += str(days) +" day "
-			if hrs > 1:
-				uptimeStr += str(hrs) +" hrs "
-			elif hrs == 1:
-				uptimeStr += str(hrs) +" hr "
-			if min > 1:
-				uptimeStr += str(min) +" mins "
-			elif min == 1:
-				uptimeStr += str(min) +" min "
-			if sec > 1:
-				uptimeStr += str(sec) +" secs "
-			elif sec == 1:
-				uptimeStr += str(sec) +" sec "
-				 
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Uptime', uptimeStr)
-			itemCounter += 1
+			if tSettings['Uptime']:
+				uptime = s.UptimeTimestamp
+				sec =  uptime % 60
+				uptime = int(uptime/60)
+				min = uptime % 60
+				uptime = int(uptime/60)
+				hrs = uptime % 60
+				uptime = int(uptime/60)
+				days = uptime
+				uptimeStr = ""
+				if days > 1:
+					uptimeStr += str(days) +" days "
+				elif days == 1:
+					uptimeStr += str(days) +" day "
+				if hrs > 1:
+					uptimeStr += str(hrs) +" hrs "
+				elif hrs == 1:
+					uptimeStr += str(hrs) +" hr "
+				if min > 1:
+					uptimeStr += str(min) +" mins "
+				elif min == 1:
+					uptimeStr += str(min) +" min "
+				if sec > 1:
+					uptimeStr += str(sec) +" secs "
+				elif sec == 1:
+					uptimeStr += str(sec) +" sec "
+					 
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Uptime', uptimeStr)
+				itemCounter += 1
 			
 			#Total Items
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Total Items', s.TotalItems)
-			itemCounter += 1
+			if tSettings['TotalItems']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Total Items', s.TotalItems)
+				itemCounter += 1
 			
 			#Current Items
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Current Items', s.CurrItems)
-			itemCounter += 1
+			if tSettings['CurrentItems']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Current Items', s.CurrItems)
+				itemCounter += 1
 			
 			#Total Connections
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Total Connections', s.TotalItems)
-			itemCounter += 1
+			if tSettings['TotalConnections']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Total Connections', s.TotalItems)
+				itemCounter += 1
 			
 			#Connections
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Connections', s.CurrConnections)
-			itemCounter += 1
+			if tSettings['CurrentConnections']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Connections', s.CurrConnections)
+				itemCounter += 1
 		
 			#Total Space
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Total Space', s.getFormatedTotalSpace())
-			itemCounter += 1
+			if tSettings['TotalSpace']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Total Space', s.getFormatedTotalSpace())
+				itemCounter += 1
 			
 			#Free Space
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Free Space', s.getFormatedFreeSpace())
-			itemCounter += 1
+			if tSettings['FreeSpace']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Free Space', s.getFormatedFreeSpace())
+				itemCounter += 1
 			
 			#Used Space
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Used Space', s.getFormatedUsedSpace())
-			itemCounter += 1
+			if tSettings['UsedSpace']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Used Space', s.getFormatedUsedSpace())
+				itemCounter += 1
 			
 			#Requests
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Total Requests', s.getTotalRequests())
-			itemCounter += 1
+			if tSettings['TotalRequests']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Total Requests', s.getTotalRequests())
+				itemCounter += 1
 			
 			#Gets
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Gets', s.CMDGet)
-			itemCounter += 1
+			if tSettings['TotalGets']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Gets', s.CMDGet)
+				itemCounter += 1
 			
 			#Sets
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Sets', s.CMDSet)
-			itemCounter += 1
+			if tSettings['TotalSets']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Sets', s.CMDSet)
+				itemCounter += 1
 			
 			#Flushes
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Flushes', s.CMDFlush)
-			itemCounter += 1
+			if tSettings['Flushes']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Flushes', s.CMDFlush)
+				itemCounter += 1
 			
 			#Evictions
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Evictions', s.Evictions)
-			itemCounter += 1
+			if tSettings['Evictions']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Evictions', s.Evictions)
+				itemCounter += 1
 			
 			#Get Hits
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Get Hits', s.GetHits)
-			itemCounter += 1
+			if tSettings['GetHits']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Get Hits', s.GetHits)
+				itemCounter += 1
 			
 			#Get Misses
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Get Misses', s.GetMisses)
-			itemCounter += 1
+			if tSettings['GetMisses']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Get Misses', s.GetMisses)
+				itemCounter += 1
 			
 			#Delete Hits
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Delete Hits', s.DeleteHits)
-			itemCounter += 1
+			if tSettings['DeleteHits']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Delete Hits', s.DeleteHits)
+				itemCounter += 1
 			
 			#Delete Misses
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Delete Misses', s.DeleteMisses)
-			itemCounter += 1
+			if tSettings['DeleteMisses']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Delete Misses', s.DeleteMisses)
+				itemCounter += 1
 			
 			#Incr Hits
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Incr Hits', s.IncrHits)
-			itemCounter += 1
+			if tSettings['IncrHits']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Incr Hits', s.IncrHits)
+				itemCounter += 1
 			
 			#Incr Misses
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Incr Misses', s.IncrMisses)
-			itemCounter += 1
+			if tSettings['IncrMisses']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Incr Misses', s.IncrMisses)
+				itemCounter += 1
 			
 			#Decr Hits
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Decr Hits', s.DecrHits)
-			itemCounter += 1
+			if tSettings['DecrHits']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Decr Hits', s.DecrHits)
+				itemCounter += 1
 			
 			#Decr Misses
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Decr Misses', s.DecrMisses)
-			itemCounter += 1
+			if tSettings['DecrMisses']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Decr Misses', s.DecrMisses)
+				itemCounter += 1
 			
 			#Cas Hits
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CAS Hits', s.CasHits)
-			itemCounter += 1
+			if tSettings['CASHits']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CAS Hits', s.CasHits)
+				itemCounter += 1
 			
 			#Cas Misses
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CAS Misses', s.CasMisses)
-			itemCounter += 1
+			if tSettings['CASMisses']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CAS Misses', s.CasMisses)
+				itemCounter += 1
 			
 			#Cas Badval
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CAS Misses', s.CasBadval)
-			itemCounter += 1
+			if tSettings['CASBadval']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CAS Badval', s.CasBadval)
+				itemCounter += 1
 			
 			#Bytes Written
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Net Out', s.getFormatedBytesWrite())
-			itemCounter += 1
+			if tSettings['NetOut']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Net Out', s.getFormatedBytesWrite())
+				itemCounter += 1
 			
 			#Bytes Read
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Net In', s.getFormatedBytesRead())
-			itemCounter += 1
+			if tSettings['NetIn']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Net In', s.getFormatedBytesRead())
+				itemCounter += 1
 			
 			#Pointer Size
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Pointer Size', s.PointerSize)
-			itemCounter += 1
+			if tSettings['PointerSize']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Pointer Size', s.PointerSize)
+				itemCounter += 1
 			
 			#Threads
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Threads', s.Threads)
-			itemCounter += 1
+			if tSettings['Threads']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Threads', s.Threads)
+				itemCounter += 1
 			
 			#RUsage User
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CPU User Time', s.RUsageUser)
-			itemCounter += 1
+			if tSettings['CPUUserTime']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CPU User Time', s.RUsageUser)
+				itemCounter += 1
 			
 			#RUsage System
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CPU System Time', s.RUsageSystem)
-			itemCounter += 1
+			if tSettings['CPUSystemTime']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'CPU System Time', s.RUsageSystem)
+				itemCounter += 1
 			
 			#Connection Structures
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Connection Structures', s.ConnectionStructures)
-			itemCounter += 1
+			if tSettings['ConnectionStruct']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Connection Structures', s.ConnectionStructures)
+				itemCounter += 1
 			
 			#Accepting Conns
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Accepting Connections', s.AcceptingConns)
-			itemCounter += 1
+			if tSettings['AcceptingConnections']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Accepting Connections', s.AcceptingConns)
+				itemCounter += 1
 			
 			#Listen Disabled Num
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Listen Disabled Num', s.ListenDisabledNum)
-			itemCounter += 1
+			if tSettings['ListenDisabled']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Listen Disabled Num', s.ListenDisabledNum)
+				itemCounter += 1
 			
 			#Conn Yields
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Connection Yields', s.ConnYields)
-			itemCounter += 1
+			if tSettings['ConnectionYield']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Connection Yields', s.ConnYields)
+				itemCounter += 1
 			
 			#Request Rate
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Request Rate', "%.2f cache requests/second"% (s.getRequestRate(),))
-			itemCounter += 1
+			if tSettings['RequestRate']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Request Rate', "%.2f cache requests/second"% (s.getRequestRate(),))
+				itemCounter += 1
 			
 			#Hit Rate
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Hit Rate', "%.2f cache requests/second"% (s.getHitRate(),))
-			itemCounter += 1
+			if tSettings['HitRate']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Hit Rate', "%.2f cache requests/second"% (s.getHitRate(),))
+				itemCounter += 1
 			
 			#Misses Rate
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Miss Rate', "%.2f cache requests/second"% (s.getMissRate(),))
-			itemCounter += 1
-			
-			#Set Rate
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Set Rate', "%.2f cache requests/second"% (s.getSetRate(),))
-			itemCounter += 1
+			if tSettings['MissRate']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Miss Rate', "%.2f cache requests/second"% (s.getMissRate(),))
+				itemCounter += 1
 			
 			#Get Rate
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Get Rate', "%.2f cache requests/second"% (s.getGetRate(),))
-			itemCounter += 1
+			if tSettings['GetRate']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Get Rate', "%.2f cache requests/second"% (s.getGetRate(),))
+				itemCounter += 1
+			
+			#Set Rate
+			if tSettings['SetRate']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Set Rate', "%.2f cache requests/second"% (s.getSetRate(),))
+				itemCounter += 1
 			
 			#Eviction Rate
-			renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Eviction Rate', "%.2f cache requests/second"% (s.getEvictionRate(),))
-			itemCounter += 1
+			if tSettings['EvictionRate']:
+				renderItem(gbServerX, gridLayout_5, hostStr, itemCounter, 'Eviction Rate', "%.2f cache requests/second"% (s.getEvictionRate(),))
+				itemCounter += 1
 			
 			self.verticalLayout_6.addWidget(gbServerX)
 			
