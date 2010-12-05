@@ -26,7 +26,7 @@ class ActiveCluster(object):
 class Cluster(object):
 	def __init__(self, name):
 		self.servers = []
-		self.name = name
+		self.name = str(name)
 		self.treeItem = None
 		self.treeItemParent = None
 		self.key = md5(self.name).hexdigest()
@@ -56,7 +56,7 @@ class Cluster(object):
 		return servers
 		
 	def save(self):
-		save = {'name':self.name, 'servers':[]}
+		save = {'name':str(self.name), 'servers':[]}
 		for server in self.servers:
 			save['servers'].append(server.save())
 			

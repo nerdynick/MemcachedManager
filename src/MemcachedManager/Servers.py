@@ -3,9 +3,9 @@ from PyQt4.QtCore import QStringList
 
 class Server:
 	def __init__(self, name, ip, port):
-		self.name = name
-		self.ip = ip
-		self.port = port
+		self.name = str(name)
+		self.ip = str(ip)
+		self.port = str(port)
 		self.cluster = None
 		self.tree = None
 		
@@ -14,7 +14,7 @@ class Server:
 								QStringList(str(self.name) +" ( "+ str(self.ip) +":"+ str(self.port) +" )"))
 		
 	def save(self):
-		return {'name':self.name, 'ip':self.ip, 'port':self.port}
+		return {'name':str(self.name), 'ip':str(self.ip), 'port':str(self.port)}
 		
 	def setCluster(self, cluster):
 		self.cluster = cluster

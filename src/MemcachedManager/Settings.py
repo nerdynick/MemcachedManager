@@ -2,6 +2,7 @@ import os
 from Clusters import Cluster
 from Servers import Server
 import pickle
+import yaml
 		
 def getSaveLocation():
 	try:
@@ -9,7 +10,7 @@ def getSaveLocation():
 		if not os.path.exists(path):
 			os.makedirs(path, 0755)
 		return path
-	except Exception, e:
+	except Exception:
 		return os.getcwd()
 
 class Settings:
@@ -36,10 +37,18 @@ class GlobalSettings:
 		
 	def loadConfig(self):
 		if not self.__dict__.has_key('configPath') or self.configPath is None:
-			self.configPath = os.path.join(getSaveLocation(), 'preferences.ini')
+			self.configPath = os.path.join(getSaveLocation(), 'preferences.yaml')
+			
+			#Handle Migration of Pickle to Yaml
+			if os.path.exists(self.configPath) is False:
+				oldPath = os.path.join(getSaveLocation(), 'preferences.ini')
+				if os.path.exists(oldPath) is True:
+					self.config = pickle.load(open(oldPath, 'rb'))
+					os.remove(oldPath)
+					self.save()
 			
 		if not self.__dict__.has_key('config') or self.config is None:
-			if os.path.exists(self.configPath) is not True:
+			if os.path.exists(self.configPath) is False:
 				self.config = {
 							'Graphs': {
 									'HitMiss': '#CF8442',
@@ -61,10 +70,10 @@ class GlobalSettings:
 									}
 							}
 			else:
-				self.config = pickle.load(open(self.configPath, 'rb'))
+				self.config = yaml.load(open(self.configPath, 'rb'))
 		
 	def save(self):			
-		pickle.dump(self.config, open(self.configPath, 'wb'))
+		yaml.dump(self.config, open(self.configPath, 'wb'))
 
 class ServerSettings:
 	__settings = {}
@@ -79,13 +88,22 @@ class ServerSettings:
 			
 	def loadConfig(self):
 		if not self.__dict__.has_key('configPath') or self.configPath is None:
-			self.configPath = os.path.join(getSaveLocation(), 'servers.ini')
+			self.configPath = os.path.join(getSaveLocation(), 'servers.yaml')
+			
+			#Handle Migration of Pickle to Yaml
+			if os.path.exists(self.configPath) is False:
+				oldPath = os.path.join(getSaveLocation(), 'servers.ini')
+				if os.path.exists(oldPath) is True:
+					self.config = pickle.load(open(oldPath, 'rb'))
+					os.remove(oldPath)
+					self.loadClusters()
+					self.save()
 			
 		if not self.__dict__.has_key('config') or self.config is None:
 			if os.path.exists(self.configPath) is not True:
 				self.config = {'clusters': []}
 			else:
-				self.config = pickle.load(open(self.configPath, 'rb'))
+				self.config = yaml.load(open(self.configPath, 'rb'))
 			
 	def loadClusters(self):
 		if not self.__dict__.has_key('clusters') or self.clusters is None:
@@ -115,7 +133,7 @@ class ServerSettings:
 		for cluster in self.clusters:
 			self.config['clusters'].append(cluster.save())
 			
-		pickle.dump(self.config, open(self.configPath, 'wb'))
+		yaml.dump(self.config, open(self.configPath, 'wb'))
 		
 	def getClusters(self):
 		return self.clusters
