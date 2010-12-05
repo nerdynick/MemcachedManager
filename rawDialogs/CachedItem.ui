@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>311</width>
+    <width>493</width>
     <height>437</height>
    </rect>
   </property>
@@ -23,7 +23,17 @@
      </item>
      <item>
       <property name="text">
+       <string>Raw (Compressed)</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
        <string>PHP Serialized</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>PHP Serialized (Compressed)</string>
       </property>
      </item>
      <item>
@@ -36,10 +46,21 @@
        <string>JSON</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>JSON (Compressed)</string>
+      </property>
+     </item>
     </widget>
    </item>
    <item>
     <widget class="QPlainTextEdit" name="txtCachedValue">
+     <property name="font">
+      <font>
+       <family>Monospace</family>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
      <property name="readOnly">
       <bool>true</bool>
      </property>

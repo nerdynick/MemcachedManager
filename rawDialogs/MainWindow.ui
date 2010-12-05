@@ -98,7 +98,7 @@
              <item>
               <widget class="QLineEdit" name="txtCacheKeys">
                <property name="toolTip">
-                <string>Seperate Keys with ';'</string>
+                <string>Seperate Keys with ','</string>
                </property>
               </widget>
              </item>
@@ -272,8 +272,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>562</width>
-                 <height>540</height>
+                 <width>214</width>
+                 <height>630</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -677,8 +677,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>562</width>
-                 <height>540</height>
+                 <width>127</width>
+                 <height>75</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout">
@@ -724,8 +724,8 @@ p, li { white-space: pre-wrap; }
                 <rect>
                  <x>0</x>
                  <y>0</y>
-                 <width>562</width>
-                 <height>540</height>
+                 <width>171</width>
+                 <height>390</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -1023,7 +1023,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>832</width>
-     <height>17</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

@@ -31,33 +31,63 @@ class CachedItem(QtGui.QDialog, Ui_CacheItem):
             else:
                 unpickel=False
                 
-            values = ActiveCluster().getActive().getKeys(self.currentKeys, unpickel=unpickel)
+            compressed = False
+            if encoding[-12:] == "(Compressed)":
+                compressed = True
+                encoding = encoding[0:-13]
+                
+            values = ActiveCluster().getActive().getKeys(self.currentKeys, unpickel=unpickel, compressed=compressed)
             text = ""
-            for server, value in dict(values).items():
+            for server, keys in dict(values).items():
                 if encoding == 'PHP Serialized':
                     tvalue = []
-                    for k,v in dict(value).iteritems():
-                        try:
-                            v = str(PHPUnserialize().unserialize(v))
-                        except Exception:
-                            v = 'Error'
-                        tvalue.append("--- "+ str(k) +" ---\n\n"+v)
+                    for k,v in dict(keys).iteritems():
+                        if v is not None:
+                            try:
+                                v = str(PHPUnserialize().unserialize(v))
+                            except Exception:
+                                v = 'Error'
+                        else:
+                            v = "(None)"
+                            
+                        tvalue.append(self._formatKeyValue(k, v))
                     value = tvalue
                 elif encoding == 'JSON':
                     tvalue = []
-                    for k,v in dict(value).iteritems():
-                        try:
-                            v = str(json.dumps(json.loads(v), sort_keys=True, indent=4))
-                        except Exception:
-                            v = 'Error'
-                        tvalue.append("--- "+ str(k) +" ---\n\n"+v)
+                    for k,v in dict(keys).iteritems():
+                        if v is not None:
+                            try:
+                                v = str(json.dumps(json.loads(v), sort_keys=True, indent=4))
+                            except Exception:
+                                v = 'Error'
+                        else:
+                            v = "(None)"
+                            
+                        tvalue.append(self._formatKeyValue(k, v))
                     value = tvalue
                 else:
-                    value = ["--- "+ str(k) +" ---\n\n"+ v for k,v in dict(value).iteritems()]
+                    tvalue = []
+                    for k,v in dict(keys).iteritems():
+                        if v is None:
+                            v = "(None)"
+                            
+                        tvalue.append(self._formatKeyValue(k, v))
+                    value = tvalue
                     
-                value = "\n\n".join(value)
-                text += "\n\n==="+ str(server) +"===\n"+value
+                if text != "":
+                    text += "\n\n"
+                    
+                text += str(server)+"\n"
+                text += "="*len(str(server))
+                text += "\n\n"
+                text += "\n\n".join(value)
                 text = QtCore.QString(text)
                 
             self.txtCachedValue.setPlainText(text)
+            
+    def _formatKeyValue(self, key, value):
+        text = str(key)+"\n"
+        text += "-"*len(str(key))
+        text += "\n"+ str(value)
+        return text
         

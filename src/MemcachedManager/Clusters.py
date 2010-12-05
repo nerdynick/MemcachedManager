@@ -81,10 +81,10 @@ class Cluster(object):
 		mc.delete_multi(keys)
 		mc.disconnect_all()
 			
-	def getKeys(self, key, unpickel=True):
+	def getKeys(self, key, unpickel=True, compressed=False):
 		keys = str(key).split(',')
 		mc = self.getMemcached()
-		values = mc.get_all(keys, unpickel=unpickel)
+		values = mc.get_all(keys, unpickel=unpickel, compressed=compressed)
 		mc.disconnect_all()
 		return values
 		

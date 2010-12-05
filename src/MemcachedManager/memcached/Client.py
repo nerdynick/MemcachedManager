@@ -7,7 +7,7 @@ import memcache
 import socket
 
 class MemcachedClient(memcache.Client):
-    def get_all(self, keys, key_prefix='', unpickel=True, compressed=True):
+    def get_all(self, keys, key_prefix='', unpickel=True, compressed=False):
         if compressed:
             flag = memcache.Client._FLAG_COMPRESSED
         else:
@@ -33,8 +33,11 @@ class MemcachedClient(memcache.Client):
                     if isinstance(msg, tuple):
                         msg = msg[1]
                     server.mark_dead(msg)
-                if value:
-                    if not values.has_key(str(server)):
-                        values[str(server)] = {}
-                    values[str(server)][key] = value
+                    
+                server = str(server)
+                if not values.has_key(server):
+                    values[server] = {}
+                    
+                values[server][key] = value
+                
         return values

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'MainWindow.ui'
 #
-# Created: Wed Sep 22 10:30:31 2010
-#      by: PyQt4 UI code generator 4.7.2
+# Created: Sun Dec  5 12:22:09 2010
+#      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -125,7 +125,7 @@ class Ui_MainWindow(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.scrollAreaWidgetContents_2 = QtGui.QWidget(self.scrollArea_2)
-        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 562, 540))
+        self.scrollAreaWidgetContents_2.setGeometry(QtCore.QRect(0, 0, 214, 630))
         self.scrollAreaWidgetContents_2.setObjectName("scrollAreaWidgetContents_2")
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_2)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
@@ -302,7 +302,7 @@ class Ui_MainWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.scrollAreaWidgetContents = QtGui.QWidget(self.scrollArea)
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 562, 540))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 127, 75))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.verticalLayout = QtGui.QVBoxLayout(self.scrollAreaWidgetContents)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -326,7 +326,7 @@ class Ui_MainWindow(object):
         self.saServerInfo.setWidgetResizable(True)
         self.saServerInfo.setObjectName("saServerInfo")
         self.scrollAreaWidgetContents_3 = QtGui.QWidget(self.saServerInfo)
-        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 562, 540))
+        self.scrollAreaWidgetContents_3.setGeometry(QtCore.QRect(0, 0, 171, 390))
         self.scrollAreaWidgetContents_3.setObjectName("scrollAreaWidgetContents_3")
         self.verticalLayout_6 = QtGui.QVBoxLayout(self.scrollAreaWidgetContents_3)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
@@ -455,7 +455,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_5.addWidget(self.tabsMain)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 832, 17))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 832, 23))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -519,7 +519,7 @@ class Ui_MainWindow(object):
         self.treeCluster.headerItem().setText(0, QtGui.QApplication.translate("MainWindow", "Clusters", None, QtGui.QApplication.UnicodeUTF8))
         self.gbClearKey.setTitle(QtGui.QApplication.translate("MainWindow", "Manage Cache", None, QtGui.QApplication.UnicodeUTF8))
         self.lblCacheKeys.setText(QtGui.QApplication.translate("MainWindow", "Cache Key(s)", None, QtGui.QApplication.UnicodeUTF8))
-        self.txtCacheKeys.setToolTip(QtGui.QApplication.translate("MainWindow", "Seperate Keys with \';\'", None, QtGui.QApplication.UnicodeUTF8))
+        self.txtCacheKeys.setToolTip(QtGui.QApplication.translate("MainWindow", "Seperate Keys with \',\'", None, QtGui.QApplication.UnicodeUTF8))
         self.btnGetCacheKeys.setText(QtGui.QApplication.translate("MainWindow", "Get Key(s)", None, QtGui.QApplication.UnicodeUTF8))
         self.btnDelCacheKeys.setText(QtGui.QApplication.translate("MainWindow", "Delete Key(s)", None, QtGui.QApplication.UnicodeUTF8))
         self.btnFlushCache.setToolTip(QtGui.QApplication.translate("MainWindow", "Flush Keys from All Servers in Cluster", None, QtGui.QApplication.UnicodeUTF8))
