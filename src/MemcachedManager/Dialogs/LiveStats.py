@@ -2,7 +2,7 @@ from PyQt4 import QtGui
 from PyQt4 import QtCore
 from MemcachedManager.Dialogs.ui_LiveStats import Ui_liveStatsDialog
 import time
-import MemcachedManager.Settings
+from MemcachedManager.Settings import Settings
 from MemcachedManager.Clusters import ActiveCluster
 
 class Dialog(QtGui.QDialog, Ui_liveStatsDialog):
@@ -15,8 +15,6 @@ class Dialog(QtGui.QDialog, Ui_liveStatsDialog):
 		self.stats = []
 		self.TableViewModel = MonitorTableModel()
 		self.tbvLiveStats.setModel(self.TableViewModel)
-		
-		self.settings = MemcachedManager.Settings.Settings()
 		
 		self.connect(self, QtCore.SIGNAL('finished(int)'), self.stopMonitor)
 		
@@ -149,4 +147,4 @@ class Monitor(QtCore.QThread):
 			if stats is not None:
 				self.dialog.updateStats(stats)
 				self.emit(QtCore.SIGNAL('refreshed'), None)
-				time.sleep(int(self.dialog.settings.settings.config['Stats']['RefreshInterval']))
+				time.sleep(int(Settings().settings.config['Stats']['RefreshInterval']))

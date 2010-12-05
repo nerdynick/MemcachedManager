@@ -14,14 +14,15 @@ def getSaveLocation():
 		return os.getcwd()
 
 class Settings:
-	settings = None
-	servers = None
+	__settings = {}
 	
 	def __init__(self):
-		if self.settings is None:
+		self.__dict__ = self.__settings
+		
+		if not self.__dict__.has_key('settings') is None:
 			self.settings = GlobalSettings()
 		
-		if self.servers is None:
+		if not self.__dict__.has_key('servers') is None:
 			self.servers = ServerSettings()
 			
 	def save(self):

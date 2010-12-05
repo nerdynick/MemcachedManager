@@ -6,6 +6,7 @@ import datetime
 import os.path
 from MemcachedManager.Dialogs import LiveStats
 import MemcachedManager.Settings
+from MemcachedManager.Settings import Settings
 from MemcachedManager.Clusters import ActiveCluster
 
 class Stats:
@@ -14,13 +15,12 @@ class Stats:
 		self.connect(self.btnRefresh, QtCore.SIGNAL('clicked()'), self._updateStats)
 		
 		self.liveStatsDialog = LiveStats.Dialog()
-		self.settings = MemcachedManager.Settings.Settings()
 		
 	def onFocus(self):
 		"""
 		Event called when this tab gains focus
 		"""
-		if self.settings.settings.config['Stats']['AutoRefresh'] is True:
+		if Settings().settings.config['Stats']['AutoRefresh'] is True:
 			self._updateStats()
 			
 	def closeEvent(self):
@@ -103,7 +103,7 @@ class Stats:
 		values = []
 		labels = []
 		colors = []
-		allPossibleColor = self.settings.settings.config['Graphs']['Pie']
+		allPossibleColor = Settings().settings.config['Graphs']['Pie']
 		colorPos = 0
 		count = 0
 		for server in stats.getServers():
@@ -144,7 +144,7 @@ class Stats:
 			hits = 0
 			misses = 0
 			
-		bar = pyplot.bar((0.25,1), (hits, misses), 0.5, color=self.settings.settings.config['Graphs']['HitMiss'])
+		bar = pyplot.bar((0.25,1), (hits, misses), 0.5, color=Settings().settings.config['Graphs']['HitMiss'])
 		pyplot.title('Hits vs. Misses')
 		pyplot.gca().set_xticklabels(('Hits', 'Misses'))
 		pyplot.gca().set_xticks((0.5,1.25))
@@ -167,7 +167,7 @@ class Stats:
 			gets = 0
 			sets = 0
 			
-		bar = pyplot.bar((0.25,1), (gets, sets), 0.5, color=self.settings.settings.config['Graphs']['GetSet'])
+		bar = pyplot.bar((0.25,1), (gets, sets), 0.5, color=Settings().settings.config['Graphs']['GetSet'])
 		pyplot.title('Gets & Sets')
 		pyplot.gca().set_xticklabels(('Gets', 'Sets'))
 		pyplot.gca().set_xticks((0.5,1.25))
@@ -209,7 +209,7 @@ class Stats:
 			lblServerXStarted.setText(str(itemValue))
 			grid.addWidget(lblServerXStarted, itemCounter, 1, 1, 1)
 		
-		tSettings = self.settings.settings.config['Stats']['ServerStats']
+		tSettings = Settings().settings.config['Stats']['ServerStats']
 		#Add each server
 		for s in stats.servers:
 			hostStr = str(s.Name).replace(':', '').replace('.', '').replace('-', '')
