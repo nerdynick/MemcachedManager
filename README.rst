@@ -15,6 +15,12 @@ Features
  * View slabs on each server, Including keys & data
  * View basic stats on a cluster and servers for that cluster
  * Watch traffic to each server in a cluster
+ 
+Dependencies
+============
+ - Matplotlib
+ - yaml (PyYaml)
+ - PyQT4
 
 Important URLs
 ==============
