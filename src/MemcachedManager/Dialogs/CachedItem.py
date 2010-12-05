@@ -8,34 +8,30 @@ from PyQt4 import QtCore
 from MemcachedManager.Dialogs.ui_CachedItem import Ui_CacheItem
 import json
 from MemcachedManager.PHPUnserialize import PHPUnserialize
+from MemcachedManager.Clusters import ActiveCluster
 
 class CachedItem(QtGui.QDialog, Ui_CacheItem):
     def __init__(self):
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
-        self.currentCluster = None
         self.currentKeys = None
         
         self.connect(self, QtCore.SIGNAL('refresh'), self._refresh)
         self.connect(self.cbEncodings, QtCore.SIGNAL('currentIndexChanged(int)'), self._refresh)
         
-    def setCluster(self, cluster):
-        self.currentCluster = cluster
-        self.emit(QtCore.SIGNAL('refresh'), None)
-        
-    def setKeys(self, keys):
+    def refresh(self, keys):
         self.currentKeys = keys
         self.emit(QtCore.SIGNAL('refresh'), None)
         
     def _refresh(self, *args):
-        if self.currentCluster is not None and self.currentKeys is not None and self.currentKeys != "":
+        if ActiveCluster().getActive() is not None and self.currentKeys is not None and self.currentKeys != "":
             encoding = self.cbEncodings.currentText()
             if encoding == 'Python Pickeled':
                 unpickel=True
             else:
                 unpickel=False
                 
-            values = self.currentCluster.getKeys(self.currentKeys, unpickel=unpickel)
+            values = ActiveCluster().getActive().getKeys(self.currentKeys, unpickel=unpickel)
             text = ""
             for server, value in dict(values).items():
                 if encoding == 'PHP Serialized':

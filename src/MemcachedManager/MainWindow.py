@@ -11,6 +11,7 @@ from Tabs import ManagementTasks, Slabs, Stats
 from ui_MainWindow import Ui_MainWindow
 from Dialogs import Preferences, Add, About, CachedItem
 from Settings import Settings
+from MemcachedManager.Clusters import ActiveCluster
 import Main
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow, ManagementTasks.ManagementTasks, Slabs.Slabs, Stats.Stats):
@@ -204,16 +205,12 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow, ManagementTasks.ManagementTas
         """
         Sets the Current Active Cluster and updates the title of the window to reflex this.
         """
-        self.currentCluster = cluster
-        self.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Memcached Manager ("+ str(self.currentCluster.name) +")", None, QtGui.QApplication.UnicodeUTF8))
+        ActiveCluster().setActive(cluster)
+        self.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Memcached Manager ("+ str(cluster.name) +")", None, QtGui.QApplication.UnicodeUTF8))
         
         #Update Stats Tab if we are currently on it
         if self.currentTab == 'Stats':
             self._updateStats()
-        
-        #Update Live Stats if its showing
-        if not self.liveStatsDialog.isHidden():
-            self.liveStatsDialog.setCluster(self.currentCluster)
 
         
     def deleteServer(self):

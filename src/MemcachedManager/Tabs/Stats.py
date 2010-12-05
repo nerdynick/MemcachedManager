@@ -6,6 +6,7 @@ import datetime
 import os.path
 from MemcachedManager.Dialogs import LiveStats
 import MemcachedManager.Settings
+from MemcachedManager.Clusters import ActiveCluster
 
 class Stats:
 	def __init__(self):
@@ -29,8 +30,7 @@ class Stats:
 		"""
 		Display the Live Stats Dialog
 		"""
-		if self.currentCluster is not None:
-			self.liveStatsDialog.setCluster(self.currentCluster)
+		if ActiveCluster().getActive() is not None:
 			self.liveStatsDialog.show()
 		else:
 			QtGui.QMessageBox.critical(self, "No Cluster Selected", "You do not have an Active Cluster")
@@ -43,9 +43,9 @@ class Stats:
 		stats tab and updates the prograss bar
 		"""
 		self.pbStats.setValue(0)
-		if self.currentCluster is not None:
+		if ActiveCluster().getActive() is not None:
 			matplotlib.rc('font', size=12)
-			stats = self.currentCluster.getStats()
+			stats = ActiveCluster().getActive().getStats()
 			self.pbStats.setValue(10)
 			self._updateCachInfo(stats)
 			self.pbStats.setValue(30)

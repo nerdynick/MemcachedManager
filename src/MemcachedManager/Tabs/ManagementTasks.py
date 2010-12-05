@@ -1,5 +1,6 @@
 from PyQt4 import QtCore
 from PyQt4 import QtGui
+from MemcachedManager.Clusters import ActiveCluster
 
 class ManagementTasks:
 	def __init__(self):
@@ -18,12 +19,11 @@ class ManagementTasks:
 		pass
 	
 	def getKeys(self):
-		value = self.txtCacheKeys.text()
-		if self.currentCluster is not None:
+		keys = self.txtCacheKeys.text()
+		if ActiveCluster().getActive() is not None:
 			self.cachedItemDialog.hide()
 			self.cachedItemDialog.show()
-			self.cachedItemDialog.setCluster(self.currentCluster)
-			self.cachedItemDialog.setKeys(value)
+			self.cachedItemDialog.refresh(keys)
 		else:
 			QtGui.QMessageBox.critical(self, "Not Cluster Selected", "You do not have an Active Cluster")
 		
@@ -32,8 +32,8 @@ class ManagementTasks:
 		Deletes a key(s) from the Current Active Cluster 
 		"""
 		value = self.txtCacheKeys.text()
-		if self.currentCluster is not None:
-			self.currentCluster.deleteKey(value)
+		if ActiveCluster().getActive() is not None:
+			ActiveCluster().getActive().deleteKey(value)
 			QtGui.QMessageBox.information(self, "Key(s) Deleted", "Your key(s) have been deleted")
 		else:
 			QtGui.QMessageBox.critical(self, "Not Cluster Selected", "You do not have an Active Cluster")
@@ -42,8 +42,8 @@ class ManagementTasks:
 		"""
 		Flush all Keys from the Current Active Cluster
 		"""
-		if self.currentCluster is not None:
-			self.currentCluster.flushKeys()
+		if ActiveCluster().getActive() is not None:
+			ActiveCluster().getActive().flushKeys()
 			QtGui.QMessageBox.information(self, "Cache Keys Flushed", "Your keys have been flushed")
 		else:
 			QtGui.QMessageBox.critical(self, "Not Cluster Selected", "You do not have an Active Cluster")

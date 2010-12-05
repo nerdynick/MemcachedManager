@@ -8,7 +8,22 @@ import memcached.Stats
 from PyQt4.QtGui import QTreeWidgetItem
 from PyQt4.QtCore import QStringList
 
-class Cluster:
+class ActiveCluster(object):
+	__state = {}
+	
+	def __init__(self):
+		self.__dict__ = self.__state
+		if not self.__dict__.has_key('activeCluster'):
+			self.activeCluster = None
+		
+	def setActive(self, cluster):
+		self.activeCluster = cluster
+	
+	def getActive(self):
+		return self.activeCluster
+		
+
+class Cluster(object):
 	def __init__(self, name):
 		self.servers = []
 		self.name = name
