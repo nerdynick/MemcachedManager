@@ -237,13 +237,18 @@ class Stats:
 			#Uptime
 			if tSettings['Uptime']:
 				uptime = s.UptimeTimestamp
-				sec =  uptime % 60
-				uptime = int(uptime/60)
-				min = uptime % 60
-				uptime = int(uptime/60)
-				hrs = uptime % 60
-				uptime = int(uptime/60)
-				days = uptime
+				
+				days = uptime/86400
+				uptime = int(uptime%86400)
+				
+				hrs = uptime/3600
+				uptime = int(uptime%3600)
+				
+				min = uptime/60 
+				uptime = int(uptime%60)
+				
+				sec = uptime
+				
 				uptimeStr = ""
 				if days > 1:
 					uptimeStr += str(days) +" days "
