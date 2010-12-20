@@ -16,7 +16,7 @@ U{Nick "NerdyNick" Verbeck   <nerdynick@gmail.com>}
 Version
 =======
 
-0.1
+0.2
 
 Detailed Documentation
 ======================
@@ -48,7 +48,7 @@ import sys
 import os
 import MainWindow
 
-__version__ = "0.1a1.5"
+__version__ = "0.2"
 
 def launch():
 	app = QtGui.QApplication(sys.argv)

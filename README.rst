@@ -9,12 +9,25 @@ It allows you to delete & flush keys, view stats, see the raw data on the server
 Features
 ========
 
- * Delete Key(s) - 1 or more at a time
- * Flush Keys across whole cluster
- * Group Memcached Servers into a Cluster
- * View slabs on each server, Including keys & data
- * View basic stats on a cluster and servers for that cluster
- * Watch traffic to each server in a cluster
+ - Delete Key(s)
+ - Get Key(s)
+   - PHP Serialized 
+   - Compressed
+   - JSON
+   - Python Pickled
+   - Raw
+ - Flush All Keys across the cluster
+ - Cluster Grouping
+ - View stats about the cluster
+ - View stats about each server in a cluster
+ - Watch live traffic to each server in a cluster
+ 
+Future Features
+===============
+ - View slabs on each server, Including keys & data
+ - Memcached debug mode
+   - Start local memcached instance
+   - Watch live traffic and commands hitting the local instance. Including counts.
  
 Dependencies
 ============
